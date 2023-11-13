@@ -8,10 +8,18 @@ import Slide2 from '../../../assets/home/slide2.jpg'
 import Slide3 from '../../../assets/home/slide3.jpg'
 import Slide4 from '../../../assets/home/slide4.jpg'
 import Slide5 from '../../../assets/home/slide5.jpg'
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const SwiperHome = () => {
     return (
-        <Swiper
+        <section>
+            {/* Dynamic Section Title*/}
+            <SectionTitle 
+            subHeading={ "ORDER ONLINE"}
+            heading={"---From 11:00am to 10:00pm---"}>
+            </SectionTitle>
+
+             <Swiper
             slidesPerView={4}
             spaceBetween={30}
             pagination={{
@@ -42,6 +50,7 @@ const SwiperHome = () => {
             </SwiperSlide>
 
         </Swiper>
+        </section>
     );
 };
 
