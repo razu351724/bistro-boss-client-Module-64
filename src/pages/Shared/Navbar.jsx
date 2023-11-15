@@ -4,8 +4,8 @@ const Navbar = () => {
 
     const navOptions = <> 
          <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white " to="/">Home</NavLink></li>
+        <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/menu">Our Menu</NavLink></li>
         <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/about">About</NavLink></li>
-        <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/menu">Menu</NavLink></li>
     </>
 
     return (
