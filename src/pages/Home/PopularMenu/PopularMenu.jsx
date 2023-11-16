@@ -6,7 +6,7 @@ const PopularMenu = () => {
     const [menu] = useMenu();
     const popular = menu.filter(item => item.category === 'popular')
     
-    // এটা বাদ দিয়ে কাস্টম আমরা কাস্টম হুক ব্যবহার করছি ।।
+    // এটা বাদ দিয়ে  আমরা কাস্টম হুক ব্যবহার করেছি ।।
     // const [menu, setMenu] = useState([]);
     // useEffect(() => {
     //     fetch('menu.json')
