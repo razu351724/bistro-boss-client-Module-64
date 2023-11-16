@@ -5,7 +5,7 @@ const Navbar = () => {
     const navOptions = <> 
          <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white " to="/">Home</NavLink></li>
         <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/menu">Our Menu</NavLink></li>
-        <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/about">About</NavLink></li>
+        <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/order">Order Food</NavLink></li>
     </>
 
     return (
@@ -29,7 +29,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="btn text-white">Button</a>
             </div>
         </div>
     );
