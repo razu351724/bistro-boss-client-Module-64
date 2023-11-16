@@ -24,28 +24,14 @@ const Menu = () => {
             </Helmet>
             <Cover img={menuImg} title="our menu"></Cover>
             {/* main cover */}
-            <SectionTitle subHeading= "Today's offer" heading="Don't Miss"></SectionTitle>
+            <SectionTitle subHeading="Today's offer" heading="Don't Miss"></SectionTitle>
             {/* offered menu items */}
             <MenuCategory items={offered}></MenuCategory>
 
             {/* dessert items */}
-            <MenuCategory
-                title="Dessert"
-                items={desserts}
-                img={dessertImg}
-            ></MenuCategory>
-
-            {/* pizza items*/}
-            <MenuCategory 
-                title= "pizza"
-                items={pizza}
-                img={pizzaImg}
-            ></MenuCategory>
-
-            {/* salad items */}
+            <MenuCategory title="Dessert" items={desserts}img={dessertImg}></MenuCategory>
+            <MenuCategory title="pizza" items={pizza} img={pizzaImg}></MenuCategory>
             <MenuCategory title='salad' items={salad} img={saladImg}></MenuCategory>
-
-            {/* soup items */}
             <MenuCategory title='soup' items={soup} img={soupImg}></MenuCategory>
         </div>
     );
