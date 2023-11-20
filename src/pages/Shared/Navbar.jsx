@@ -1,31 +1,40 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers.jsx/AuthProvider";
+import {FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const handleLogOut = () => {
         logOut()
-        .then(() => {})
-        .catch(error => console.log(error));
+            .then(() => { })
+            .catch(error => console.log(error));
     }
 
 
-    const navOptions = <> 
-         <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white " to="/">Home</NavLink></li>
+    const navOptions = <>
+        <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white " to="/">Home</NavLink></li>
         <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/menu">Our Menu</NavLink></li>
         <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/order/salad">Order Food</NavLink></li>
         <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/secret">Secret</NavLink></li>
+        <li>
+            <Link to="/">
+                <button className="border flex gap-2 py-1 px-2">
+                    <FaShoppingCart className="text-white "></FaShoppingCart>
+                    <div className="badge badge-secondary">+0</div>
+                    </button>
+            </Link>
+        </li>
 
         {
-            user? <>
-            <span>{user?.displayName}</span>
-            <button onClick={handleLogOut} className="btn btn-gost">LogOut</button>
+            user ? <>
+                {/* <span>{user?.displayName}</span> */}
+                <button onClick={handleLogOut} className="btn btn-gost">LogOut</button>
             </>
-        :
-        <> 
-        <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/login">Login</NavLink></li>
-        </>
+                :
+                <>
+                    <li><NavLink className="hover:text-[#F5B70A] font-semibold text-white" to="/login">Login</NavLink></li>
+                </>
         }
     </>
 
@@ -42,7 +51,7 @@ const Navbar = () => {
                 </div>
                 <a className="btn btn-ghost text-xl">Bistro Boss</a>
             </div>
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-center hidden lg:flex items-center">
                 <ul className="menu menu-horizontal px-1">
 
                     {navOptions}
