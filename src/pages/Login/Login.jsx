@@ -51,6 +51,7 @@ const Login = () => {
     }
 
     const handleValidateCaptcha = (e) => {
+        e.preventDefault()
         const user_captcha_value = e.target.value;
         console.log(user_captcha_value);
         if (validateCaptcha(user_captcha_value)) {
@@ -94,8 +95,9 @@ const Login = () => {
                                         <LoadCanvasTemplate />
                                     </label>
                                     <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="type the text captcha" className="input input-bordered" required />
+                                    <input disabled={disabled} className="btn bg-[#D1A054] text-white my-2" type="submit" value="Login" />
                                 </div>
-                                <input disabled={disabled} className="btn bg-[#D1A054] text-white my-2" type="submit" value="Login" />
+                                
                             </div>
                         </form>
                         <p className='text-center mb-4 text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
