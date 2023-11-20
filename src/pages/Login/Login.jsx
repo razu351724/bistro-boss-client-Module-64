@@ -1,12 +1,12 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers.jsx/AuthProvider';
 import { Link } from 'react-router-dom';
 import img from '../../assets/others/authentication2.png'
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2'
 
 const Login = () => {
-    const captchaRaf = useRef(null);
     const [disabled, setDisabled] = useState(true);
 
     const { signIn } = useContext(AuthContext);
@@ -26,15 +26,31 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                Swal.fire({
+                    title: "User Login Successful.",
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                });
             })
     }
 
-    const handleValidateCaptcha = () => {
-        const user_captcha_value = captchaRaf.current.value;
+    const handleValidateCaptcha = (e) => {
+        const user_captcha_value = e.target.value;
         console.log(user_captcha_value);
         if (validateCaptcha(user_captcha_value)) {
             setDisabled(false)
-            // alert('Captcha Matched');
         }
         else {
             setDisabled(true)
@@ -49,8 +65,6 @@ const Login = () => {
             <div className="hero min-h-screen bg-base-200 ">
                 <div className="hero-content flex flex-col md:flex-row">
                     <div className="text-center md:w-1/2 lg:text-left">
-                        {/* <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p> */}
                         <img src={img} className='w-full' alt="#" />
                     </div>
                     <div className="card  md:w-1/2 max-w-sm shadow-2xl bg-base-100">
@@ -75,10 +89,9 @@ const Login = () => {
                                     <label className="label">
                                         <LoadCanvasTemplate />
                                     </label>
-                                    <input type="text" ref={captchaRaf} name="captcha" placeholder="type the text captcha" className="input input-bordered" required />
-                                    <button onClick={handleValidateCaptcha} className="btn btn-outline btn-accent btn-xs my-2">Valida</button>
+                                    <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="type the text captcha" className="input input-bordered" required />
                                 </div>
-                                <input disabled={disabled} className="btn bg-[#D1A054] text-white" type="submit" value="Login" />
+                                <input disabled={disabled} className="btn bg-[#D1A054] text-white my-2" type="submit" value="Login" />
                             </div>
                         </form>
                         <p className='text-center mb-4 text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
