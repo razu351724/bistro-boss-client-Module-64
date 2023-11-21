@@ -7,12 +7,13 @@ import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
 
 const Login = () => {
-    const [disabled, setDisabled] = useState(true);
+    const [ setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+    console.log('state in the location', location.state)
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -46,7 +47,7 @@ const Login = () => {
                       `
                     }
                 });
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
     }
 
@@ -94,10 +95,12 @@ const Login = () => {
                                     <label className="label">
                                         <LoadCanvasTemplate />
                                     </label>
-                                    <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="type the text captcha" className="input input-bordered" required />
-                                    <input disabled={disabled} className="btn bg-[#D1A054] text-white my-2" type="submit" value="Login" />
+                                    <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="type the text captcha" className="input input-bordered" />
                                 </div>
-                                
+                                <div className="form-control mt-2">
+                                    {/* TODO: apply disabled for re captcha */}
+                                    <input disabled={false} className="btn bg-[#D1A054] text-white my-2" type="submit" value="Login" />
+                                </div>
                             </div>
                         </form>
                         <p className='text-center mb-4 text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
