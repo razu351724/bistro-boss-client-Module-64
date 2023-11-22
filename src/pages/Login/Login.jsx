@@ -5,9 +5,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/others/authentication2.png'
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
-    const [ setDisabled] = useState(true);
+    const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -103,10 +104,12 @@ const Login = () => {
                                 </div>
                             </div>
                         </form>
-                        <p className='text-center mb-4 text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
+                        <p className='text-center px-6 mb-4 text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
+
         </div>
 
     );

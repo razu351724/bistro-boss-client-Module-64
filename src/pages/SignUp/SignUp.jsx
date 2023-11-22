@@ -10,40 +10,43 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const onSubmit = data => { 
+    const onSubmit = data => {
         console.log(data)
         createUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            updateUserProfile(data.name, data.photoURL)
-            .then(() => {
-                // console.log('user profile info updated')
-                const userInfo = {
-                    name: data.name,
-                    email: data.email
-                }
-                axiosPublic.post('/user',userInfo)
-                if(reset.data.insertedIn){
-                    console.log('user added to the database')
-                    reset();
-                    Swal.fire({
-                        position: "top-center",
-                        icon: "success",
-                        title: "User created successfull",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                      navigate('/');
-                }
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        // console.log('user profile info updated')
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedIn) {
+                                    console.log('user added to the database')
+                                    reset();
+                                    Swal.fire({
+                                        position: "top-center",
+                                        icon: "success",
+                                        title: "User created successfull",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                }
+                            })
 
+
+                    })
+                    .catch(error => console.log(error))
             })
-            .catch(error => console.log(error))
-        })
-     };
+    };
 
     return (
         <div>
@@ -70,7 +73,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" {...register("photoURL", { required: true })}  placeholder="Photo URL" className="input input-bordered" />
+                                <input type="text" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
 
                                 {errors.photoURL && <span className="text-red-600">Photo URL is nrequired</span>}
                             </div>
