@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers.jsx/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
+import SocialLogin from "../../components/SocialLogin/SocialLogin"
 
 const SignUp = () => {
     const axiosPublic = useAxiosPublic();
@@ -14,7 +14,7 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
@@ -109,6 +109,7 @@ const SignUp = () => {
                             </div>
                         </form>
                         <p className='text-center mb-4 text-[#D1A054] text-xl'><small>Already registered? <Link to="/login">Go to log in</Link></small></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

@@ -104,8 +104,10 @@ const Login = () => {
                                 </div>
                             </div>
                         </form>
-                        <p className='text-center px-6 mb-4 text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
+                        <p className='text-center px-6  text-xl text-[#D1A054]'><small>New Here? <Link to="/signup">Create an account</Link></small></p>
+                        <div className='text-center'>
                         <SocialLogin></SocialLogin>
+                        </div>
                     </div>
                 </div>
             </div>
